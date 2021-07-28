@@ -8,7 +8,7 @@ Instead of hacking the game and controlling the dino this bot tries to read the 
 
 ## Status
 
-Best run so far has been 1042 points. Current version can not dodge the pterodactyl that requires ducking. It used to work, but in the latest refactoring I broke it. Average run currently always ends with the duck failing. As of writing this Olympics are on going and there are additional Olympic torches that trigger different Olympic themes modes. Some of which are easier than the normal run for the bot some of which are completely impossible.
+Best run so far has been 1042 points. ~Current version can not dodge the pterodactyl that requires ducking. It used to work, but in the latest refactoring I broke it. Average run currently always ends with the duck failing. As of writing this Olympics are on going and there are additional Olympic torches that trigger different Olympic themes modes. Some of which are easier than the normal run for the bot some of which are completely impossible.~ I am almost sure this is due to the Olympics update. I can not dodge the bird even manually holding down button...
 
 ## Setup
 
