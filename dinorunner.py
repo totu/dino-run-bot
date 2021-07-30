@@ -4,10 +4,8 @@ from cv2 import waitKey, namedWindow, startWindowThread, imshow, resize, cvtColo
 from mss import mss
 from PIL.Image import frombytes
 from numpy import array
-from pynput.keyboard import Controller, Key
-from time import time, sleep
-import pyautogui
-import keyboard
+from time import time
+from pyautogui import press
 
 def grab(sct, monitor):
     sct_img = sct.grab(monitor)
@@ -19,31 +17,29 @@ def grab(sct, monitor):
 
 if __name__ == "__main__":
     sct = mss() 
-    monitor = {"top": 390, "left": 100, "width": 120, "height": 70}
     # startWindowThread()
     # namedWindow("bot view")
+    start = time()
+    width = 95
 
     while 1:
+        monitor = {"top": 390, "left": 100, "width": width, "height": 70}
         # Get screen shot
         cropped = grab(sct, monitor)
         # Reference of empty row
         ref = sum(cropped[-1])
         # Obstacle detection
         cacti_check = sum(cropped[80][40:])
+        birb_check = sum(cropped[20][40:])
 
         # jump over cacti
-        if cacti_check != ref: 
-            pyautogui.keyUp("down")
-            pyautogui.keyDown("space")
-            sleep(0.1)
-            pyautogui.keyUp("space")
-        else:
-            if not keyboard.is_pressed("down"):
-                pyautogui.keyDown("down")
-
-        # This requires sudo
-        if keyboard.is_pressed("q"):
-            break
+        if cacti_check != ref or birb_check != ref: 
+            press("space")
+        current = time()
+        if current > start + 3.5:
+            start = current
+            width = width + 1
+            
 
         # imshow("bot view", cropped)
         # if waitKey(1) &0xFF == ord('q'):
