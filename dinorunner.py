@@ -21,26 +21,39 @@ if __name__ == "__main__":
     # namedWindow("bot view")
     start = time()
     width = 95
+    left = 100
+    speed_up = True
 
     while 1:
-        monitor = {"top": 390, "left": 100, "width": width, "height": 70}
         # Get screen shot
+        monitor = {"top": 390, "left": left, "width": width, "height": 70}
         cropped = grab(sct, monitor)
+
         # Reference of empty row
         ref = sum(cropped[-1])
+
         # Obstacle detection
         cacti_check = sum(cropped[80][40:])
         birb_check = sum(cropped[20][40:])
 
-        # jump over cacti
+        # jump over obstacles:
         if cacti_check != ref or birb_check != ref: 
             press("space")
-        current = time()
-        if current > start + 3.5:
-            start = current
-            width = width + 1
-            
+        
+        # check if we are speeding up
+        if speed_up:
 
+            # every 3 seconds we increase how far we detect objects
+            # this compensates for the increasing speed of the game
+            current = time()
+            if current > start + 3:
+                start = current
+                width = width + 1
+                left = left + 1
+                # At this point game should be at max speed 
+                if width >= 160:
+                    speed_up = False
+            
         # imshow("bot view", cropped)
         # if waitKey(1) &0xFF == ord('q'):
         #     break
