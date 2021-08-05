@@ -8,7 +8,7 @@ Instead of hacking the game and controlling the dino this bot tries to read the 
 
 ## Status
 
-![highscore](highscore.png)
+![highscore](https://topituulensuu.com/dino-run-bot/hiscore.png)
 
 ## Setup
 
